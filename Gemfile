@@ -14,6 +14,7 @@ gem "puma", "~> 5.0"
 gem 'figaro'
 gem 'devise'
 gem 'devise-jwt'
+gem 'rack-cors'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -31,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem "faker"
+   gem 'guard-rspec', require: false
 end
 
 group :development do
