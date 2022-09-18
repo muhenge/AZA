@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   }
 
   post '/api/transactions', to: 'api/transactions#create'
-
+  get '/api/transactions', to: 'api/transactions#index'
+  get '/api/transactions/:id', to: 'api/transactions#show'
 end

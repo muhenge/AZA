@@ -7,7 +7,9 @@ RSpec.describe "Customers::Registrations", type: :request do
         { customer: {
           username: 'hello',
           email: 'test@g.com',
-          password: '123456' }
+          password: '123456',
+          password_confirmation: '123456'
+        }
           }
       expect(response.status).to eq(201)
 
