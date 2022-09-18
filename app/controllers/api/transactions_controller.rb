@@ -1,6 +1,8 @@
 class Api::TransactionsController < ApplicationController
+  before_action :authenticate_customer!
+
   def create
-   
+    @transaction = current_customer.transactions.build(transaction_params)
     if @transaction.save
       render json: {success: true, Transaction:@transaction, response: "Transaction created successfully" }, status: 201
     else
@@ -14,6 +16,6 @@ class Api::TransactionsController < ApplicationController
   end
 
   def set_transaction
-    @post = Post.includes(:transaction).find(params[:id])
+    @transaction = Transaction.includes(:transaction).find(params[:id])
   end
 end
