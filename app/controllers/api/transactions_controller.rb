@@ -2,8 +2,8 @@ class Api::TransactionsController < ApplicationController
   before_action :authenticate_customer!
   before_action :set_transaction, only: [:show]
   def index
-    @transactions = Transaction.all.includes(:customer)
-    render json: {message: "Found", transactions:@transactions }, status: 200
+    @transactions = Transaction.all.includes(:customer).most_recent
+    render json: {success:true, transactions:@transactions }, status: 200
   end
 
   def show
@@ -12,6 +12,7 @@ class Api::TransactionsController < ApplicationController
 
   def create
     @transaction = current_customer.transactions.build(transaction_params)
+    @transaction.input_amount = Money.new(@transaction.input_amount, @transaction.in_currency)
     if @transaction.save
       render json: {success: true, Transaction:@transaction, response: "Transaction created successfully" }, status: 201
     else
@@ -21,7 +22,7 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:transaction).permit(:input_amount,:customer_id)
+    params.require(:transaction).permit(:input_amount,:in_currency, :out_currency,:customer_id)
   end
 
   def set_transaction

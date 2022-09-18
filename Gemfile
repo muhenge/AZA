@@ -16,6 +16,7 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'rack-cors'
 gem 'shoulda-matchers'
+gem 'money-rails', '~>1.12'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb

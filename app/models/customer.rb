@@ -7,4 +7,6 @@ class Customer < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   has_many :transactions
+  
+  # Ex:- scope :active, -> {where(:active => true)}
 end
