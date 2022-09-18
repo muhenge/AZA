@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
-  belongs_to :customer
   validates :input_amount, presence: true
+  belongs_to :customer
 end
 
 # Path: app/models/customer.rb

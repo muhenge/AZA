@@ -15,5 +15,4 @@ RSpec.describe Customer, type: :model do
     customer = Customer.create(username: 'hello', email: 'test4@g.com', password: '123456')
     expect(customer).to_not be_valid
   end
-
 end

@@ -15,6 +15,7 @@ gem 'figaro'
 gem 'devise'
 gem 'devise-jwt'
 gem 'rack-cors'
+gem 'shoulda-matchers'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
