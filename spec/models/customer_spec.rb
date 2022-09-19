@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  context 'Associations' do
-    it { should have_many(:transactions) }
-  end
   context 'validations' do
     it 'is not valid without a username' do
       customer = Customer.create(username: nil, email: 'hello@g.com', password: '123456')

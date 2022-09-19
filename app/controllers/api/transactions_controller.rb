@@ -12,9 +12,14 @@ class Api::TransactionsController < ApplicationController
 
   def create
     @transaction = current_customer.transactions.build(transaction_params)
-    @transaction.input_amount = Money.new(@transaction.input_amount, @transaction.in_currency)
+    @transaction.input_amount = Money.new(@transaction.input_amount, @transaction.in_currency).cents
+    @in_currency = Money.new(@transaction.input_amount, @transaction.in_currency).currency
+    @out_currency = Money.new(@transaction.output_amound, @transaction.out_currency).currency
+    @transaction.output_amound = Money.new(@transaction.output_amound, @transaction.out_currency).cents
+    @transaction.output_amound = Money.add_rate(@in_currency, @out_currency, 10.24515)
+
     if @transaction.save
-      render json: {success: true, Transaction:@transaction, response: "Transaction created successfully" }, status: 201
+      render json: {success: true, response: "Transaction created successfully", Transaction:@transaction }, status: 201
     else
       render json: {success: false, response: @transaction.errors.full_messages }, status: 401
     end
@@ -22,7 +27,7 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:transaction).permit(:input_amount,:in_currency, :out_currency,:customer_id)
+    params.require(:transaction).permit(:input_amount,:output_amound,:in_currency, :out_currency,:customer_id)
   end
 
   def set_transaction

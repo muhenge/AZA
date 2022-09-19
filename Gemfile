@@ -3,13 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
-# Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
-# Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'figaro'
 gem 'devise'
@@ -17,6 +14,7 @@ gem 'devise-jwt'
 gem 'rack-cors'
 gem 'shoulda-matchers'
 gem 'money-rails', '~>1.12'
+gem "debug", require: false
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
