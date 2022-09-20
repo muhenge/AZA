@@ -22,7 +22,7 @@
 `{"customer":{ "email":"dada@g.com","password":"password","password_confirmation":"password","country":"Uganda" }}`
 
 ##### POST `/api/transactions`
-
+> Note that this will require the Bearer token, received from login response
 ###### Sample body
 
 `{"transaction":{ "input_amount":10000,"in_currency":"CAD","out_currency":"USD" }}`
