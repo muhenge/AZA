@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     edit: 'customers/registrations#update'
   }
 
-  post '/api/transactions', to: 'api/transactions#create'
-  get '/api/transactions', to: 'api/transactions#index'
-  get '/api/transactions/:id', to: 'api/transactions#show'
+  namespace :api do
+    resources :transactions, only: [:index, :create, :show]
+  end
+
 end
