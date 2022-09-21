@@ -11,7 +11,7 @@ RSpec.describe "Api::Transactions", type: :request do
           out_currency: 'EU4',
           customer_id: 1
         }
-          }
+      }
       expect(response.status) == 201
     end
   end
