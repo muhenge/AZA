@@ -1,8 +1,8 @@
 class Api::TransactionsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_transaction, only: [:show]
+  before_action :set_transaction, only: [:show, :update]
   def index
-    @transactions = Transaction.all.includes(:customer).most_recent
+    @transactions = Transaction.all.includes(:customer).most_recent # avoiding 1+N queries
     render json: {success:true, transactions:@transactions }, status: 200
   end
 
@@ -25,6 +25,9 @@ class Api::TransactionsController < ApplicationController
     end
   end
 
+  def update
+    @transaction.update(transaction_params)
+  end
   private
   def transaction_params
     params.require(:transaction).permit(:input_amount,:output_amound,:in_currency, :out_currency,:customer_id)

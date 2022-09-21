@@ -14,7 +14,7 @@ RSpec.describe "Customers::Registrations", type: :request do
       expect(response.status).to eq(201)
 
     end
-    scenario 'creates a new customer' do
+    scenario 'not creating new customer when username empty' do
       post '/api/signup', params:
         { customer: {
           username: nil,
